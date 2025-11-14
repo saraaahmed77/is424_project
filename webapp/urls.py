@@ -5,11 +5,21 @@ from . import views
 
 urlpatterns = [
     # Index / home
-    path('', views.index_view, name='index'),
+    path('', views.Welcome, name='welcome'),
+
+    path('register/', views.register_view, name='register'),
 
     # URL login
-    path('login', auth_views.LoginView.as_view(template_name='webapp/login.html'), name='login'),
-    
-    # URL sign up
-    path('signup', views.signup_view, name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='webapp/login.html'), name='login'),
+
+    path('product/', views.product, name='product'),
+
+    path('products/<int:pk>/', views.product_detail, name='product_detail'),
+
+
+
+
+
+
+
 ]

@@ -1,0 +1,41 @@
+{% extends 'webapp/base.html'  %}
+{% block content %}
+{% load static %}
+
+<div class="d-flex flex-column justify-content-center align-items-center" style="padding: 10px 20px;">
+    <img src="{% static 'Resource/imgs/register.png' %}" class="img-fluid" width="125" height="125">
+    <h2>Register</h2>
+
+<br>
+<div class="col-lg-5 mx-auto wow fadeInUp" data-wow-delay="0.5s">
+    <div class="bg-light rounded h-100 d-flex align-items-center justify-content-center p-5 shadow-sm">
+	{% if error %}
+		<p>{{ error }}</p>
+	{% endif %}
+	<form method="post">
+		<div class="form-group text-start">
+		{% csrf_token %}			
+		{% for field in form %}
+			<p>
+			{% if field.errors %}
+				<ul class="errorlist">
+					{% for error in field.errors %}
+						<li>{{ error }}</li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+
+			<div style="text-align: center;">
+              {{ field.label_tag }}<br>
+                     {{ field }}<br>
+                        </div>
+			</p>
+		{% endfor %}
+		</div>			
+		<input type="submit" class="btn btn-primary rounded-pill py-2 px-4 mt-2 d-block mx-auto" value="Register"/>
+		<p class="text-center mt-3"><br>Already registered? <a href="{% url 'login' %}">Login</a></p>	
+	</form>
+	</div>
+</div>
+</div>
+{% endblock %}

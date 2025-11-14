@@ -121,5 +121,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
 # Added to support login redirection to home page
+
 LOGIN_REDIRECT_URL = '/'
