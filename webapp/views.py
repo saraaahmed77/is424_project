@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from .forms import RegistrationForm,Product
-from .models import Product
+from .models import Product , BasketItem, Order
 
 
 def Welcome(request):
@@ -26,5 +26,56 @@ def product(request):
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'product_detail.html', {'product': product})
+    return render(request, 'webapp/product_detail.html', {'product': product})
+
+
+def add_to_basket(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity', 1))
+    else:
+        quantity = 1
+
+    try:
+        item = BasketItem.objects.get(user=request.user, product=product)
+        item.quantity = item.quantity + quantity
+        item.save()
+    except BasketItem.DoesNotExist:
+        item = BasketItem(user=request.user, product=product, quantity=quantity)
+        item.save()
+
+    messages.success(request, 'Product added to your basket.')
+
+    return redirect('product')
+
+
+
+def basket(request):
+    items = BasketItem.objects.filter(user=request.user)
+
+    if request.method == 'POST':
+        if 'clear' in request.POST:
+            items.delete()
+            return redirect('basket')
+
+        for item in items:
+            field_name = 'quantity_%d' % item.id
+            if field_name in request.POST:
+                new_q = int(request.POST[field_name])
+                if new_q <= 0:
+                    item.delete()
+                else:
+                    item.quantity = new_q
+                    item.save()
+
+        return redirect('basket')
+
+    total = 0
+    for item in items:
+        total = total + item.line_total()
+
+    context = {'items': items, 'total': total}
+    return render(request, 'webapp/basket.html', context)
+
 
