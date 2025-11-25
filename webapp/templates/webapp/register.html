@@ -2,13 +2,13 @@
 {% block content %}
 {% load static %}
 
-<div class="d-flex flex-column justify-content-center align-items-center" style="padding: 10px 20px;">
-    <img src="{% static 'Resource/imgs/register.png' %}" class="img-fluid" width="125" height="125">
-    <h2>Register</h2>
+<div class="d-flex flex-column justify-content-center align-items-center" style="padding: 20px 20px;">
+    <img src="{% static 'Resource/imgs/logo.png' %}" class="img-fluid" width=180 height=180>
+     <h2 >Register</h2>
 
 <br>
-<div class="col-lg-5 mx-auto wow fadeInUp" data-wow-delay="0.5s">
-    <div class="bg-light rounded h-100 d-flex align-items-center justify-content-center p-5 shadow-sm">
+<div class="col-lg-4 col-md-6 col-sm-10 mx-auto">
+    <div class="bg-light rounded shadow-sm p-5 text-center">
 	{% if error %}
 		<p>{{ error }}</p>
 	{% endif %}
@@ -28,7 +28,7 @@
 			<div style="text-align: center;">
               {{ field.label_tag }}<br>
                      {{ field }}<br>
-                        </div>
+            </div>
 			</p>
 		{% endfor %}
 		</div>			

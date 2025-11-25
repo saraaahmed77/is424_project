@@ -11,11 +11,11 @@ urlpatterns = [
 
     # URL login
     path('login/', auth_views.LoginView.as_view(template_name='webapp/login.html'), name='login'),
-
     path('product/', views.product, name='product'),
-
     path('products/<int:pk>/', views.product_detail, name='product_detail'),
     path('basket/', views.basket, name='basket'),
     path('basket/add/<int:product_id>/', views.add_to_basket, name='add_to_basket'),
+    path('logout/', views.logout_user, name='logout'),
+    path('order/', views.order_page, name='order'),
 
 ]

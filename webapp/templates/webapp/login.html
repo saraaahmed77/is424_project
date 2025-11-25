@@ -3,13 +3,13 @@
 {% block content %}
 
 <div class="container text-center">
-  <img src="{% static 'Resource/imgs/login.png' %}" class="img-fluid" width=125 height=125>
+  <img src="{% static 'Resource/imgs/logo.png' %}" class="img-fluid" width=125 height=125>
   <div class="col-md-6 mx-auto">
     <h2>Login</h2>
 
 	<br>
 <div class="col-lg-4 mx-auto wow fadeInUp" data-wow-delay="0.5s">
-	<div class="bg-light rounded h-100 d-flex align-items-center justify-content-center p-5">
+	<div class="bg-light rounded d-flex align-items-center justify-content-center p-5">
 	{% if error %}
 		<p>{{ error }}</p>
 	{% endif %}

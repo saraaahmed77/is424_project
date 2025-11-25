@@ -50,7 +50,6 @@ def add_to_basket(request, product_id):
     return redirect('product')
 
 
-
 def basket(request):
     items = BasketItem.objects.filter(user=request.user)
 
@@ -77,5 +76,27 @@ def basket(request):
 
     context = {'items': items, 'total': total}
     return render(request, 'webapp/basket.html', context)
+
+def logout_user(request):
+    logout(request)
+    return redirect('login')
+
+def order_page(request):
+    items = BasketItem.objects.filter(user=request.user)
+    basket_items = []
+    total = 0
+
+    for item in items:
+        subtotal = item.product.price * item.quantity
+        total += subtotal
+
+        basket_items.append({'product': item.product, 'quantity': item.quantity, 'price': item.product.price,
+                            'subtotal': subtotal
+        })
+
+    context = {'basket_items': basket_items,'total': total
+    }
+
+    return render(request, 'webapp/order.html', context)
 
 
