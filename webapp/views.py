@@ -5,7 +5,6 @@ from django.contrib.auth import login, logout
 from .forms import RegistrationForm,Product
 from .models import Product , BasketItem, Order
 
-
 def Welcome(request):
     return render(request, 'webapp/welcome.html')
 
@@ -97,6 +96,19 @@ def order_page(request):
     context = {'basket_items': basket_items,'total': total
     }
 
+    if request.method == "POST":
+        if not basket_items:
+            return redirect('basket')
+
+        new_order = Order.objects.create(
+            user=request.user,
+            total=total
+        )   
+
+        items.delete()
+        return redirect('product')
+
+    context = {'basket_items': basket_items,'total': total}
     return render(request, 'webapp/order.html', context)
 
 
