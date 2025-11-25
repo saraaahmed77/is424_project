@@ -14,7 +14,7 @@ def register_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')
+            return redirect('product')
     else:
         form = RegistrationForm()
     return render(request, 'webapp/register.html', {'form': form})
