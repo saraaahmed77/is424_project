@@ -126,4 +126,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Added to support login redirection to home page
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/product/'
