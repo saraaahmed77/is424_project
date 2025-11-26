@@ -1,34 +1,41 @@
-{% extends 'webapp/base.html'  %}
-{% block content %}
+{% extends 'webapp/base.html' %}
 {% load static %}
+{% block content %}
 
-
-<div class="container">
 <div class="container-xxl py-5">
-	<div class="container">
-		<div class="row g-5">
-			<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-				<div class="d-flex flex-column">
-					<img class="img-fluid rounded w-75 align-self-end" src="{% static 'Resource/imgs/logo.png' %}" alt="logo">
+    <div class="container">
+        <div class="row align-items-center g-5">
 
-				</div>
-			</div>
-			<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-				<h1 class="mb-4">Welcome to Our Website</h1>
+           
+            <div class="col-lg-6 text-center">
+                <img src="{% static 'Resource/imgs/logo.png' %}" 
+                     class="img-fluid rounded shadow w-75" 
+                     alt="logo">
+            </div>
 
-				<p><i class="far fa-check-circle text-primary me-3"></i>
-                    <a href="{% url 'product' %}">Browse Product</a></p>
-                 
-                 
-                 <p><i class="far fa-check-circle text-primary me-3"></i>
-                    <a href="{% url 'basket' %}">View addede products</a></p>
-                 
-                 
-       
-			</div>
-		</div>
-	</div>
-</div>
+            <div class="col-lg-6">
+                <h1 class="mb-4 fw-bold">Welcome to Our Website</h1>
+                <p class="mb-4 text-secondary">
+                    Explore our products and enjoy a smooth shopping experience.
+                </p>
+
+                <div class="d-flex flex-column gap-3">
+
+                    <a href="{% url 'login' %}" 
+                       class="btn btn-primary btn-lg w-75">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}" 
+                       class="btn btn-outline-primary btn-lg w-75">
+                        Register
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 {% endblock %}
