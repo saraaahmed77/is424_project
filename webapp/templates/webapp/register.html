@@ -2,40 +2,41 @@
 {% block content %}
 {% load static %}
 
-<div class="d-flex flex-column justify-content-center align-items-center" style="padding: 20px 20px;">
-    <img src="{% static 'Resource/imgs/logo.png' %}" class="img-fluid" width=180 height=180>
-     <h2 >Register</h2>
+<div class="d-flex flex-column justify-content-center align-items-center" style="padding: 5px 10px;">
 
-<br>
-<div class="col-lg-4 col-md-6 col-sm-10 mx-auto">
-    <div class="bg-light rounded shadow-sm p-5 text-center">
-	{% if error %}
-		<p>{{ error }}</p>
-	{% endif %}
-	<form method="post">
-		<div class="form-group text-start">
-		{% csrf_token %}			
-		{% for field in form %}
-			<p>
-			{% if field.errors %}
-				<ul class="errorlist">
-					{% for error in field.errors %}
-						<li>{{ error }}</li>
-					{% endfor %}
-				</ul>
-			{% endif %}
+<div class="mx-auto" style="width: 400px;">
+    <div class="bg-light rounded shadow-sm p-3 text-center">
 
-			<div style="text-align: center;">
-              {{ field.label_tag }}<br>
-                     {{ field }}<br>
+        <img src="{% static 'Resource/imgs/logo.png' %}" class="img-fluid mb-3" width="150" height="150">
+        <h2>Register</h2>
+
+        <form method="post">
+            <div class="form-group text-start">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>
+                    {% if field.errors %}
+                        <ul class="errorlist">
+                            {% for error in field.errors %}
+                                <li class="text-danger mb-2">{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <div style="text-align: center;">
+                        {{ field.label_tag }}<br>
+                        {{ field }}<br>
+                    </div>
+                </p>
+                {% endfor %}
             </div>
-			</p>
-		{% endfor %}
-		</div>			
-		<input type="submit" class="btn btn-primary rounded-pill py-2 px-4 mt-2 d-block mx-auto" value="Register"/>
-		<p class="text-center mt-3"><br>Already registered? <a href="{% url 'login' %}">Login</a></p>	
-	</form>
-	</div>
+
+            <input type="submit" class="btn btn-primary rounded-pill py-2 px-4 mt-2 d-block mx-auto" value="Register"/>
+
+            <p class="text-center mt-3">Already registered? <a href="{% url 'login' %}">Login</a></p>
+        </form>
+    </div>
 </div>
 </div>
+
 {% endblock %}

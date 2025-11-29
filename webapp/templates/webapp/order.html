@@ -8,11 +8,9 @@
     <p class="text-muted">Review your items and confirm your order.</p>
 
     <hr>
-
     <h5 class="fw-semibold mt-4">Your Details</h5>
     <p>Name: {{ user.username }}</p>
     <p>Email: {{ user.email }}</p>
-
     <hr>
 
     <h5 class="fw-semibold mt-4">Basket Items</h5>
@@ -41,7 +39,7 @@
 
     <h4 class="text-end fw-bold">Total: {{ total }} SAR</h4>
 
-    <form method="post">
+    <form method="post"  class="text-end">
         {% csrf_token %}
         <button type="submit" class="btn btn-primary">Confirm Order</button>
     </form>

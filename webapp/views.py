@@ -106,7 +106,7 @@ def order_page(request):
         )   
 
         items.delete()
-        return redirect('product')
+        return redirect('basket')
 
     context = {'basket_items': basket_items,'total': total}
     return render(request, 'webapp/order.html', context)
